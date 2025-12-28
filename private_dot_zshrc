@@ -1,0 +1,59 @@
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# My Scripts
+export PATH="$HOME/.local/bin:$PATH"
+
+# golang
+export PATH=$PATH:`go env GOPATH`/bin
+
+# gcc for 競プロ
+export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
+
+# ASDF
+export ASDF_DATA_DIR="/Users/nagu/.asdf"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+# 補完
+## ASDF
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+
+## FOR DOCKER - http://docs.docker.jp/compose/completion.html
+fpath=(~/.zsh/completion $fpath)
+
+## FOR ZSH
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+## FOR AWC CLI
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/opt/homebrew/bin/aws_completer' aws
+complete -C '/opt/homebrew/bin/aws_completer' awslocal
+
+# prompt
+## starship
+eval "$(starship init zsh)"
+
+# 履歴機能
+export HISTFILE=${HOME}/.zsh_history # .zsh_historyにコマンドを保存する
+export HISTSIZE=100000            # メモリに展開するヒストリの数
+export SAVEHIST=100000            # .zhistoryに保存するコマンドの数
+setopt hist_ignore_dups           # 直前と同じコマンドをヒストリに記録しない
+setopt hist_ignore_all_dups       # ヒストリに追加されるコマンドが古いものと同じなら古いものを削除
+setopt hist_ignore_space          # スペースで始まるコマンドはヒストリから削除
+setopt share_history              # ヒストリを共有する
+setopt extended_history           # zsh の開始・終了時刻を.zhistoryに記録
+setopt hist_reduce_blanks         # 余分な空白は詰めて記録
+setopt hist_verify                # ヒストリを呼び出してから実行する間に一旦編集可能
+setopt hist_no_store              # historyコマンドは履歴に登録しない
+setopt hist_expand                # 補完時にヒストリを自動的に展開
+setopt inc_append_history         # 履歴をインクリメンタルに追加
+
+# インクリメンタルから検索 C-r C-s
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
+
+# fzf
+source <(fzf --zsh)
