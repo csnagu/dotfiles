@@ -7,9 +7,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # golang
 export PATH=$PATH:`go env GOPATH`/bin
 
-# gcc for 競プロ
-export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
-
 # ASDF
 export ASDF_DATA_DIR="/Users/nagu/.asdf"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
@@ -19,18 +16,18 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 ## ASDF
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 
-## FOR DOCKER - http://docs.docker.jp/compose/completion.html
+## DOCKER - http://docs.docker.jp/compose/completion.html
 fpath=(~/.zsh/completion $fpath)
 
-## FOR ZSH
+## ZSH
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
-## FOR AWC CLI
-autoload bashcompinit && bashcompinit
+## AWC CLI
+#autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
-complete -C '/opt/homebrew/bin/aws_completer' aws
-complete -C '/opt/homebrew/bin/aws_completer' awslocal
+#complete -C '/opt/homebrew/bin/aws_completer' aws
+#complete -C '/opt/homebrew/bin/aws_completer' awslocal
 
 # prompt
 ## starship

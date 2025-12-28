@@ -1,0 +1,7 @@
+#alias cat='bat'
+alias ls='ls -G'
+alias awk='gawk'
+alias grep='ggrep'
+alias sed='gsed'
+alias vim='nvim'
+
