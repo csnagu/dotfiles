@@ -1,0 +1,72 @@
+packages:
+  darwin:
+    brews:
+      # chezmoi
+      - 'bitwarden-cli'
+      - 'chezmoi'
+      # neovim
+      - 'neovim'
+      - 'ast-grep'
+      - 'difftastic'
+      - 'eza'
+      - 'fd'
+      - 'fish'
+      - 'fzf'
+      - 'graphicsmagick'
+      - 'lazygit'
+      - 'luarocks'
+      - 'mermaid-cli'
+      - 'tectonic'
+      - 'ripgrep'
+      # GNU
+      - 'gawk'
+      - 'gnu-sed'
+      - 'gnu-time'
+      - 'grep'
+      # GitHub
+      - 'gh'
+      - 'git-lfs'
+      # Languages
+      - 'go'
+      - 'python@3.10'
+      - 'rust'
+      - 'cmake'
+      - 'gcc'
+      # misc
+      - 'graphviz'
+      - 'hugo'
+      - 'jq'
+      - 'ruff'
+      - 'screenfetch'
+      - 'starship'
+      - 'tree'
+      - 'zsh-autosuggestions'
+      - 'zsh-completions'
+      - 'asdf'
+      - 'bat'
+      - 'mas'
+    casks:
+      - 'google-chrome'
+      - 'ghostty'
+      - 'bitwarden'
+      - 'karabiner-elements'
+      - 'balenaetcher'
+      - 'hazeover'
+      - 'obsidian'
+      - 'raycast'
+      - 'visual-studio-code'
+      - 'hammerspoon'
+      - 'chatgpt'
+      - 'obs'
+      - 'logi-options+'
+      - 'font-noto-nerd-font'
+      - 'font-hack-nerd-font'
+      - 'font-symbols-only-nerd-font'
+    mas:
+      - '969210610' # 1Focus
+      - '1438243180' # Dark Reader for Safari
+      - '1533805339' # Keepa - Price Tracker
+      - '302584613' # Kindle
+      - '1629209970' # Metronome
+      - '497799835' # Xcode
+
