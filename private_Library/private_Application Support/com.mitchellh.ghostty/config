@@ -1,19 +1,23 @@
-# Theme Settings
+# Theme
 theme = Catppuccin Macchiato
 macos-icon = xray
 
-# Font Settings
+# Font
 font-family = Cica
 font-size = 16
 
-# Window Settings
+# Window
 macos-titlebar-style = "transparent"
-window-padding-balance = true
-window-padding-x = 5
-window-padding-y = 5
 background-blur-radius = 20
 background-opacity = 0.75
 
 # TERM
 term = "xterm-256color"
+copy-on-select = clipboard
 
+# Quick Terminal
+quick-terminal-position = center
+quick-terminal-size = 50%, 50%
+
+# Key Bind
+keybind = global:cmd+shift+2=toggle_quick_terminal
