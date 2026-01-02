@@ -11,7 +11,6 @@
                         "description": "Switch input to ABC when Spotlight is opened",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
                                     "key_code": "spacebar",
                                     "modifiers": { "mandatory": ["command"] }
@@ -22,7 +21,8 @@
                                         "key_code": "spacebar",
                                         "modifiers": ["command"]
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -30,20 +30,15 @@
                         "description": "Switch input to ABC when ESC",
                         "manipulators": [
                             {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "escape"
-                                },
+                                "from": { "key_code": "escape" },
                                 "to": [
                                     { "key_code": "japanese_eisuu" },
-                                    {
-                                        "key_code": "escape"
-                                    }
-                                ]
+                                    { "key_code": "escape" }
+                                ],
+                                "type": "basic"
                             }
                         ]
                     }
- 
                 ]
             },
             "devices": [
@@ -74,4 +69,3 @@
         }
     ]
 }
-
