@@ -27,6 +27,25 @@
                         ]
                     },
                     {
+                        "description": "Switch input to ABC when Switch Windows is opened",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": { "mandatory": ["option"] }
+                                },
+                                "to": [
+                                    { "key_code": "japanese_eisuu" },
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Switch input to ABC when ESC",
                         "manipulators": [
                             {

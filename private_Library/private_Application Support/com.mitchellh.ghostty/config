@@ -4,6 +4,7 @@ macos-icon = xray
 background-image = /Users/nagu/.config/ghostty/bg.png
 background-image-fit = cover
 background-image-opacity = 0.1
+
 # Font
 font-family = Cica
 font-size = 16
