@@ -1,9 +1,9 @@
 # Theme
 theme = Catppuccin Mocha
 macos-icon = xray
-background-image = /Users/nagu/.config/ghostty/bg.png
+background-image = /Users/nagu/.config/ghostty/bg.jpg
 background-image-fit = cover
-background-image-opacity = 0.1
+background-image-opacity = 0.2
 
 # Font
 font-family = Cica
@@ -24,3 +24,4 @@ quick-terminal-size = 50%, 50%
 
 # Key Bind
 keybind = global:cmd+shift+2=toggle_quick_terminal
+keybind = shift+enter=text:\x1b\r
