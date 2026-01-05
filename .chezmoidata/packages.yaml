@@ -37,7 +37,7 @@ packages:
       - 'hugo'
       - 'jq'
       - 'ruff'
-      - 'screenfetch'
+      - 'fastfetch'
       - 'starship'
       - 'tree'
       - 'zsh-autosuggestions'
