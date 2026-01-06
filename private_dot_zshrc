@@ -16,7 +16,8 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 ## ASDF
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 
-## DOCKER - http://docs.docker.jp/compose/completion.html
+## Docker - http://docs.docker.jp/compose/completion.html
+## Docker Compose - http://docs.docker.jp/compose/completion.html
 fpath=(~/.zsh/completion $fpath)
 
 ## ZSH
