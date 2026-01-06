@@ -3,7 +3,7 @@ theme = Catppuccin Mocha
 macos-icon = xray
 background-image = /Users/nagu/.config/ghostty/bg.jpg
 background-image-fit = cover
-background-image-opacity = 0.2
+background-image-opacity = 0.15
 
 # Font
 font-family = Cica
