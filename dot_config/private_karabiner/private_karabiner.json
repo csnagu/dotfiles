@@ -8,6 +8,24 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Cmdmand+Tab to Option+Tab",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Switch input to ABC when Spotlight is opened",
                         "manipulators": [
                             {
