@@ -58,6 +58,7 @@ packages:
       - 'hammerspoon'
       - 'chatgpt'
       - 'obs'
+      - 'homerow'
       - 'logi-options+'
       - 'font-noto-nerd-font'
       - 'font-hack-nerd-font'

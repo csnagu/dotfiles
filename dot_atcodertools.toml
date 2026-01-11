@@ -1,0 +1,13 @@
+[codestyle]
+indent_type='space'
+indent_width=4
+workspace_dir='~/ink/2026/atcoder_python/'
+lang='python'
+template_file='~/ink/2026/atcoder_python/template/main.py'
+#code_generator_file=
+
+[tester]
+compile_before_testing=true
+compile_only_when_diff_detected=true
+timeout_adjustment=1.2
+
