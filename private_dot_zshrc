@@ -53,5 +53,3 @@ setopt inc_append_history         # 履歴をインクリメンタルに追加
 # fzf
 source <(fzf --zsh)
 
-# Working Directory
-cd $HOME/ink/2026
