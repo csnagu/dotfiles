@@ -23,5 +23,6 @@ quick-terminal-position = center
 quick-terminal-size = 50%, 50%
 
 # Key Bind
+macos-option-as-alt = true
 keybind = global:cmd+shift+2=toggle_quick_terminal
 keybind = shift+enter=text:\x1b\r
