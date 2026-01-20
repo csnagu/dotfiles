@@ -7,15 +7,10 @@ export PATH="$HOME/.local/bin:$PATH"
 # golang
 export PATH=$PATH:`go env GOPATH`/bin
 
-# ASDF
-export ASDF_DATA_DIR="$HOME/.asdf"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+# mise
+eval "$(mise activate zsh)"
 
 # Auto-Complete
-## ASDF
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-
 ## Docker - http://docs.docker.jp/compose/completion.html
 ## Docker Compose - http://docs.docker.jp/compose/completion.html
 fpath=(~/.zsh/completion $fpath)
