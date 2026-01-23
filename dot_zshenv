@@ -17,7 +17,7 @@ ink() (
 # https://zenn.dev/inovue/articles/gh-ghq-fzf-repository-management
 repo() {
     local action="${1:-list}"
-    
+
     case "$action" in
         "list"|"l")
             # List all repositories with fzf selection
@@ -36,6 +36,22 @@ repo() {
                 cd "$(ghq root)/$selected_repo" || return 1
             fi
             ;;
+        "wt"|"w")
+            # Create Worktree
+            if [[ -z "$2" ]]; then
+                echo "Usage: repo wt <branch name>"
+                echo "Example: repo wt fix-bugs"
+                return 1
+            fi
+            local selected_repo
+            selected_repo=$(ghq list | grep -v '=' | fzf --height=50% --border --preview="echo {}" --preview-window=down:3:wrap)
+            if [[ -n "$selected_repo" ]]; then
+              (
+                cd "$(ghq root)/$selected_repo"
+                gwq add -b $2
+              ) || return 1
+            fi
+            ;;
         "remove"|"rm"|"r")
             # Remove selected repository
             local selected_repo
@@ -46,8 +62,6 @@ repo() {
                 if [[ "$confirm" =~ ^[Yy]$ ]]; then
                     rm -rf "$(ghq root)/$selected_repo"
                     echo "Removed: $selected_repo"
-                else
-                    echo "Cancelled"
                 fi
             fi
             ;;
@@ -80,23 +94,28 @@ repo() {
         "open"|"o")
             # Open repository in editor (default: code)
             local editor="${2:-code}"
-            local selected_repo
-            selected_repo=$(ghq list | fzf -m --height=50% --border --preview="echo {}" --preview-window=down:3:wrap)
-            if [[ -n "$selected_repo" ]]; then
-                local repo_path="$(ghq root)/$selected_repo"
-                if command -v "$editor" > /dev/null; then
-                    "$editor" "$repo_path"
-                else
-                    echo "Editor '$editor' not found. Trying fallback editors..."
-                    if command -v code > /dev/null; then
-                        code "$repo_path"
-                    elif command -v vim > /dev/null; then
-                        vim "$repo_path"
-                    else
-                        echo "No suitable editor found (code, vim)"
-                    fi
-                fi
+            local ghq_root="$(ghq root)"
+            local -a selected_repos
+            local -a repo_paths
+
+            selected_repos=(${(@f)$(ghq list | fzf -m --height=50% --border --preview='echo {}' --preview-window=down:3:wrap)})
+
+            # If fzf was cancelled or no selection was made, do nothing
+            if [[ -z "$selected_repos" ]]; then
+              return 0
             fi
+
+            local r
+            for r in "${selected_repos[@]}"; do
+                # Some entries may already be absolute (e.g., if you ever switch to --full-path)
+                if [[ "$r" == /* ]]; then
+                    repo_paths+=("$r")
+                else
+                    repo_paths+=("${ghq_root}/${r}")
+                fi
+            done
+
+            "$editor" "${repo_paths[@]}"
             ;;
         "help"|"h"|*)
             # Show help
@@ -130,4 +149,3 @@ EOF
             ;;
     esac
 }
-
