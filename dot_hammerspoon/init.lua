@@ -16,6 +16,46 @@ local function setWindowPosition(grid_param)
 	hs.grid.set(win, grid_param)
 end
 
+-- 縦置きモニタ向け: 画面を縦に3分割し、周囲に余白を作る
+local function setWindowVerticalThirds(index)
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+
+	local screenFrame = win:screen():frame()
+	local maxWidth = screenFrame.w
+	local maxHeight = screenFrame.h
+	local margin = 12
+	local gap = 8
+	local width = maxWidth - margin * 2
+	local height = (maxHeight - margin * 2 - gap * 2) / 3
+	local x = screenFrame.x + margin
+	local y = screenFrame.y + margin + (index - 1) * (height + gap)
+
+	win:setFrame({ x = x, y = y, w = width, h = height })
+end
+
+-- 縦置きモニタ向け: 画面を上下2分割し、周囲に余白を作る
+local function setWindowVerticalHalves(index)
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+
+	local screenFrame = win:screen():frame()
+	local maxWidth = screenFrame.w
+	local maxHeight = screenFrame.h
+	local margin = 12
+	local gap = 8
+	local width = maxWidth - margin * 2
+	local height = (maxHeight - margin * 2 - gap) / 2
+	local x = screenFrame.x + margin
+	local y = screenFrame.y + margin + (index - 1) * (height + gap)
+
+	win:setFrame({ x = x, y = y, w = width, h = height })
+end
+
 ---- 3画面
 hs.hotkey.bind(mod, "left", function()
 	setWindowPosition("0,0,4x4")
@@ -44,6 +84,25 @@ hs.hotkey.bind(mod, "d", function()
 end)
 hs.hotkey.bind(mod, "c", function()
 	setWindowPosition("8,2,4x2")
+end)
+
+---- 縦置きモニタ 16:9を縦に3つ
+hs.hotkey.bind(mod, "1", function()
+	setWindowVerticalThirds(1)
+end)
+hs.hotkey.bind(mod, "2", function()
+	setWindowVerticalThirds(2)
+end)
+hs.hotkey.bind(mod, "3", function()
+	setWindowVerticalThirds(3)
+end)
+
+---- 縦置きモニタ 16:9を上下2つ
+hs.hotkey.bind(mod, "4", function()
+	setWindowVerticalHalves(1)
+end)
+hs.hotkey.bind(mod, "5", function()
+	setWindowVerticalHalves(2)
 end)
 
 ---- 3画面 中央広め
