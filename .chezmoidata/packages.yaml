@@ -48,6 +48,7 @@ packages:
     casks:
       - 'google-chrome'
       - 'ghostty'
+      - 'cmux'
       - 'bitwarden'
       - 'karabiner-elements'
       - 'balenaetcher'

@@ -9,6 +9,7 @@
                 "rules": [
                     {
                         "description": "Cmdmand+Tab to Option+Tab",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
