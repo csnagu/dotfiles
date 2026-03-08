@@ -10,6 +10,7 @@ font-family = Cica
 font-size = 16
 
 # Window
+maximize = true
 macos-titlebar-style = "transparent"
 background-blur-radius = 10
 #background-opacity = 0.95
@@ -20,7 +21,7 @@ copy-on-select = clipboard
 
 # Quick Terminal
 quick-terminal-position = center
-quick-terminal-size = 50%, 50%
+quick-terminal-size = 75%, 75%
 
 # Key Bind
 macos-option-as-alt = true
