@@ -26,6 +26,12 @@ FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
 autoload -Uz compinit && compinit
 
+# "zsh: command not found: compdef" を回避するために
+# autoload -Uz compinit && compinit のあとに実行する必要がある
+if command -v zmx &> /dev/null; then
+  eval "$(zmx completions zsh)"
+fi
+
 # prompt
 ## starship
 eval "$(starship init zsh)"
@@ -48,3 +54,8 @@ setopt inc_append_history         # 履歴をインクリメンタルに追加
 # fzf
 source <(fzf --zsh)
 
+# zmx
+# ZMX_SESSION の表現はstarshipに任せる
+#if [[ -n $ZMX_SESSION ]]; then
+#  export PS1="[$ZMX_SESSION] ${PS1}"
+#fi
