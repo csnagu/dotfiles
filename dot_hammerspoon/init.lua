@@ -201,7 +201,6 @@ DragOtherToScroll:start()
 local targetApps = {
 	["Safari"] = true,
 	["Chrome"] = true,
-	["Ghostty"] = true,
 	["ChatGPT"] = true,
 	["Code"] = true,
 	["Obsidian"] = true,
