@@ -10,10 +10,9 @@ font-family = Cica
 font-size = 16
 
 # Window
-maximize = true
 macos-titlebar-style = "transparent"
 background-blur-radius = 10
-#background-opacity = 0.95
+background-opacity = 0.95
 
 # TERM
 term = "xterm-256color"
