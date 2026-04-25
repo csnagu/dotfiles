@@ -1,16 +1,23 @@
 format = """
+${env_var.ZMX_SESSION}\
 $username\
 $hostname\
 $directory\
 $cmd_duration\
-$line_break\
-$character"""
-
-right_format = """
+| \
 $git_branch\
 $git_state\
 $git_status\
-$python"""
+$python\
+$line_break\
+$character\
+"""
+
+#right_format = """
+#$git_branch\
+#$git_state\
+#$git_status\
+#$python"""
 
 [username]
 format = "[$user]($style)"
@@ -70,3 +77,10 @@ style = "dimmed white"
 [python]
 #pyenv_version_name = true
 style = "white"
+
+[env_var.ZMX_SESSION]
+symbol = "📦"
+format = "[$symbol $env_value]($style) | "
+description = "zmx session name"
+style = "bold magenta"
+
