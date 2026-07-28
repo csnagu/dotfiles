@@ -196,27 +196,47 @@ OverrideOtherMouseDown:start()
 OverrideOtherMouseUp:start()
 DragOtherToScroll:start()
 
--- フォーカスされたアプリが Terminal.app または VSCode のとき、英数モードに切り替える
+-- Google日本語入力の英数字モードで取得した値に置き換える
+local englishSourceID = "com.google.inputmethod.Japanese.Roman"
 
-local targetApps = {
-	["Safari"] = true,
-	["Chrome"] = true,
-	["ChatGPT"] = true,
-	["Code"] = true,
-	["Obsidian"] = true,
-}
+local function switchToEnglish()
+	if hs.keycodes.currentSourceID() ~= englishSourceID then
+		local success = hs.keycodes.currentSourceID(englishSourceID)
 
-local function switchToEisuu(appName)
-	if targetApps[appName] then
-		hs.eventtap.keyStroke({ "ctrl", "shift" }, ";") -- 「英数」キーを送信
+		if not success then
+			print("入力ソースを英数字へ変更できませんでした")
+		end
 	end
 end
 
-hs.application.watcher
-	.new(function(appName, eventType)
-		if eventType == hs.application.watcher.activated then
-			print("App activated: " .. appName)
-			switchToEisuu(appName)
-		end
-	end)
-	:start()
+-- 通常のウィンドウだけを監視する
+local windowFilter = hs.window.filter.new()
+
+windowFilter:subscribe(hs.window.filter.windowFocused, function()
+	-- フォーカス変更処理が落ち着いてから切り替える
+	hs.timer.doAfter(0.05, switchToEnglish)
+end)
+
+-- フォーカスされたアプリが Terminal.app または VSCode のとき、英数モードに切り替える
+-- local targetApps = {
+-- 	["Safari"] = true,
+-- 	["Chrome"] = true,
+-- 	["ChatGPT"] = true,
+-- 	["Code"] = true,
+-- 	["Obsidian"] = true,
+-- }
+--
+-- local function switchToEisuu(appName)
+-- 	if targetApps[appName] then
+-- 		hs.eventtap.keyStroke({ "ctrl", "shift" }, ";") -- 「英数」キーを送信
+-- 	end
+-- end
+--
+-- hs.application.watcher
+-- 	.new(function(appName, eventType)
+-- 		if eventType == hs.application.watcher.activated then
+-- 			print("App activated: " .. appName)
+-- 			switchToEisuu(appName)
+-- 		end
+-- 	end)
+-- 	:start()
