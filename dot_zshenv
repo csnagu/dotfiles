@@ -8,6 +8,31 @@ alias vim='nvim'
 # commit shortcut
 ink() (
   cd $HOME/ink || return 1
+
+  _tmp=$(mktemp)
+  echo "- ink" > "$_tmp"
+  find . -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' | sort | \
+    while IFS= read -r _year; do
+      _year_name=$(basename "$_year")
+      printf '  - %s\n' "$_year_name"
+      find "$_year" -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' | \
+        while IFS= read -r _proj; do
+          _date=$(stat -f "%SB" -t "%Y-%m-%d" "$_proj")
+          printf '%s %s\n' "$_date" "$(basename "$_proj")"
+        done | sort | \
+        while IFS= read -r _line; do
+          _pname=${_line#* }
+          printf '    - [%s](./%s/%s)\n' "$_line" "$_year_name" "$_pname"
+        done
+    done >> "$_tmp"
+
+  awk -v tf="$_tmp" '
+    /^<!-- tree -->$/ { blk=1; print; while ((getline l < tf) > 0) print l; next }
+    /^<!-- \/tree -->$/ { blk=0; print; next }
+    blk { next } { print }
+  ' README.md > README.md.tmp && mv README.md.tmp README.md
+  rm "$_tmp"
+
   git add -A
   git diff --cached --quiet && { echo "no changes"; return 0; }
   git commit -m "ink: $(date '+%Y-%m-%d')"
